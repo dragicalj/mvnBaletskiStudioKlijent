@@ -2,6 +2,11 @@ package rs.ac.bg.fon.nprog.komunikacija;
 
 import java.net.Socket;
 
+import rs.ac.bg.fon.nprog.transfer.Odgovor;
+import rs.ac.bg.fon.nprog.transfer.Posiljalac;
+import rs.ac.bg.fon.nprog.transfer.Primalac;
+import rs.ac.bg.fon.nprog.transfer.Zahtev;
+
 public class Komunikacija {
 	
 	static Komunikacija instanca;
@@ -24,5 +29,8 @@ public class Komunikacija {
         this.socket = socket;
     }
  
-    
+    public Odgovor pozivSo(Zahtev zahtev) throws Exception {
+        new Posiljalac(socket).posalji(zahtev);
+        return (Odgovor) new Primalac(socket).primi();
+    }
 }
