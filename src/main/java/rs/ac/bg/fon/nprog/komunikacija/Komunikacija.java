@@ -2,6 +2,7 @@ package rs.ac.bg.fon.nprog.komunikacija;
 
 import java.net.Socket;
 
+import rs.ac.bg.fon.nprog.domen.Administrator;
 import rs.ac.bg.fon.nprog.transfer.Odgovor;
 import rs.ac.bg.fon.nprog.transfer.Posiljalac;
 import rs.ac.bg.fon.nprog.transfer.Primalac;
@@ -12,6 +13,8 @@ public class Komunikacija {
 	static Komunikacija instanca;
     Socket socket;
     
+    Administrator trenutniAdministrator;
+
     private Komunikacija() {
 
     }
@@ -24,8 +27,15 @@ public class Komunikacija {
     }
 
 
+    public Administrator getTrenutniAdministrator() {
+		return trenutniAdministrator;
+	}
 
-    public void setSocket(Socket socket) {
+	public void setTrenutniAdministrator(Administrator trenutniAdministrator) {
+		this.trenutniAdministrator = trenutniAdministrator;
+	}
+
+	public void setSocket(Socket socket) {
         this.socket = socket;
     }
  
