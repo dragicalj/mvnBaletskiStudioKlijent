@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 
 import rs.ac.bg.fon.nprog.domen.Administrator;
 import rs.ac.bg.fon.nprog.domen.ApstraktniDomenskiObjekat;
+import rs.ac.bg.fon.nprog.domen.Koreograf;
 import rs.ac.bg.fon.nprog.forme.OpstaEkranskaForma;
 import rs.ac.bg.fon.nprog.komunikacija.Komunikacija;
 import rs.ac.bg.fon.nprog.transfer.Odgovor;
@@ -50,4 +51,28 @@ public abstract class OpstiKontrolerKI {
             return false;
         }
     }
+    
+    public void SOKreirajKoreografa() {
+        ado = oef.kreirajObjekat();
+        pretvoriGrafickiUDomenski();
+        Zahtev zahtev = new Zahtev(Operacije.KREIRAJ_KOREOGRAFA, ado);
+        Odgovor odgovor;
+        try {
+            odgovor = Komunikacija.getInstanca().pozivSo(zahtev);
+            if (odgovor.getTipOdgovora() == TipOdgovora.USPESNO) {
+                ado = (Koreograf) odgovor.getRezultat();
+                pretvoriDomenskiUGraficki();
+                JOptionPane.showMessageDialog(oef, "Sistem je kreirao koreografa");
+            } else {
+                JOptionPane.showMessageDialog(oef, "Sistem ne moze da kreira koreografa", "Greska", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(oef, "Sistem ne moze da kreira koreografa", "Greska", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    public abstract void ocistiFormu();
+
+   
 }
