@@ -329,11 +329,11 @@ public class FormaKreirajBaletskogIgraca extends OpstaEkranskaForma {
     }                                         
 
     private void btnKreirajActionPerformed(java.awt.event.ActionEvent evt) {                                           
-        /*if (txtIme.getText().isEmpty() || txtPrezime.getText().isEmpty() || txtDatumRodjenja.getText().isEmpty() || txtEmail.getText().isEmpty() || txtBrojTelefona.getText().isEmpty() || txtBrojTelefonaRoditelja.getText().isEmpty() || txtTrenutnaClanarina.getText().isEmpty()) {
+        if (txtIme.getText().isEmpty() || txtPrezime.getText().isEmpty() || txtDatumRodjenja.getText().isEmpty() || txtEmail.getText().isEmpty() || txtBrojTelefona.getText().isEmpty() || txtBrojTelefonaRoditelja.getText().isEmpty() || txtTrenutnaClanarina.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Sva polja su obavezna!");
             return;
         }
-        kontroler.SOKreirajBaletskogIgraca();*/
+        kontroler.SOKreirajBaletskogIgraca();
     }                                          
 
     private void txtTrenutnaClanarinaActionPerformed(java.awt.event.ActionEvent evt) {                                                     
