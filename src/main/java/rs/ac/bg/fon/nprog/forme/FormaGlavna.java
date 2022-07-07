@@ -1,6 +1,7 @@
 package rs.ac.bg.fon.nprog.forme;
 
 import rs.ac.bg.fon.nprog.forme.koreograf.FormaKreirajKoreografa;
+import rs.ac.bg.fon.nprog.forme.koreograf.FormaPrikaziSveKoreografe;
 
 public class FormaGlavna extends javax.swing.JFrame {
 
@@ -165,7 +166,7 @@ public class FormaGlavna extends javax.swing.JFrame {
     }                                                    
 
     private void jmiPrikaziKoreografeActionPerformed(java.awt.event.ActionEvent evt) {                                                     
-        //new FormaPrikaziSveKoreografe().setVisible(true);
+        new FormaPrikaziSveKoreografe().setVisible(true);
     }                                                    
 
     private void jmiDodajLokacijuActionPerformed(java.awt.event.ActionEvent evt) {                                                 
