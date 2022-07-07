@@ -92,7 +92,7 @@ private final KontrolerKILogin klogin;
 
     private void btnPrijaviSeActionPerformed(java.awt.event.ActionEvent evt) {                                             
         if(klogin.SOLogin()){
-            //new FormaGlavna().setVisible(true);
+            new FormaGlavna().setVisible(true);
             System.out.println("uspesno");
 
         }else{
