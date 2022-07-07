@@ -202,8 +202,8 @@ public class FormaPrikaziSveKoreografe extends OpstaEkranskaForma {
     private void btnIzmeniActionPerformed(java.awt.event.ActionEvent evt) {                                          
         try {
             // TODO add your handling code here:
-            //Koreograf koreograf = kontroler.vratiKoreografa();
-            //new FormaPromeniKoreografa(this, koreograf).setVisible(true);
+            Koreograf koreograf = kontroler.vratiKoreografa();
+            new FormaPromeniKoreografa(this, koreograf).setVisible(true);
 
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Greska", JOptionPane.ERROR_MESSAGE);
