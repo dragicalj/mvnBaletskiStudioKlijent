@@ -189,4 +189,23 @@ public abstract class OpstiKontrolerKI {
             throw new Exception();
         }
     }
+    
+    public void SOUcitajListuBaletskihGrupa() {
+        Zahtev zahtev = new Zahtev(Operacije.UCITAJ_BALETSKEGRUPE, lista);
+        Odgovor odgovor;
+        try {
+            odgovor = Komunikacija.getInstanca().pozivSo(zahtev);
+            if (odgovor.getTipOdgovora() == TipOdgovora.USPESNO) {
+                lista = (List<ApstraktniDomenskiObjekat>) odgovor.getRezultat();
+                if (lista.isEmpty()) {
+                    throw new Exception();
+                }
+            } else {
+                JOptionPane.showMessageDialog(oef, "Sistem ne moze da ucita listu baletskih grupa", "Greska", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(oef, "Sistem ne moze da ucita listu baletskih grupa", "Greska", JOptionPane.ERROR_MESSAGE);
+        }
+    }
 }
