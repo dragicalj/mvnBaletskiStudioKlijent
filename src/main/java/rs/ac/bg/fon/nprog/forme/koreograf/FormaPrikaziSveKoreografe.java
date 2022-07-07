@@ -195,7 +195,7 @@ public class FormaPrikaziSveKoreografe extends OpstaEkranskaForma {
     }                                 
 
     private void btnPronadjiActionPerformed(java.awt.event.ActionEvent evt) {                                            
-        //kontroler.SOPronadjiKoreografe();
+        kontroler.SOPronadjiKoreografe();
 
     }                                           
 
