@@ -133,5 +133,23 @@ public abstract class OpstiKontrolerKI {
             JOptionPane.showMessageDialog(oef, "Sistem ne moze da ucita koreografa", "Greska", JOptionPane.ERROR_MESSAGE);
         }
     }
-
+    
+    public void SOPromeniKoreografa() {
+        ado = oef.kreirajObjekat();
+        pretvoriGrafickiUDomenski();
+        Zahtev zahtev = new Zahtev(Operacije.PROMENI_KOREOGRAFA, ado);
+        Odgovor odgovor;
+        try {
+            odgovor = Komunikacija.getInstanca().pozivSo(zahtev);
+            if (odgovor.getTipOdgovora() == TipOdgovora.USPESNO) {
+                JOptionPane.showMessageDialog(oef, "Sistem je zapamtio koreografa");
+                ocistiFormu();
+            } else {
+                JOptionPane.showMessageDialog(oef, "Sistem ne moze da zapamti koreografa", "Greska", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(oef, "Sistem ne moze da zapamti koreografa", "Greska", JOptionPane.ERROR_MESSAGE);
+        }
+    }
 }
