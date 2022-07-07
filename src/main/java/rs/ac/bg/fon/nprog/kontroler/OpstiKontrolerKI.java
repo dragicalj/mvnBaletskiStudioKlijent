@@ -9,7 +9,9 @@ import rs.ac.bg.fon.nprog.domen.Administrator;
 import rs.ac.bg.fon.nprog.domen.ApstraktniDomenskiObjekat;
 import rs.ac.bg.fon.nprog.domen.Koreograf;
 import rs.ac.bg.fon.nprog.forme.OpstaEkranskaForma;
+import rs.ac.bg.fon.nprog.forme.koreograf.FormaPrikaziSveKoreografe;
 import rs.ac.bg.fon.nprog.komunikacija.Komunikacija;
+import rs.ac.bg.fon.nprog.modeli.ModelTabeleKoreografi;
 import rs.ac.bg.fon.nprog.transfer.Odgovor;
 import rs.ac.bg.fon.nprog.transfer.Operacije;
 import rs.ac.bg.fon.nprog.transfer.TipOdgovora;
@@ -150,6 +152,41 @@ public abstract class OpstiKontrolerKI {
         } catch (Exception ex) {
             ex.printStackTrace();
             JOptionPane.showMessageDialog(oef, "Sistem ne moze da zapamti koreografa", "Greska", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    public void SOObrisiKoreografa() {
+        FormaPrikaziSveKoreografe forma = (FormaPrikaziSveKoreografe) oef;
+          try {
+              Koreograf koreograf = konvertujRedTabeleUObjekatKoreograf();
+              Zahtev zahtev = new Zahtev(Operacije.OBRISI_KOREOGRAFA, koreograf);
+              Odgovor odgovor;
+              try {
+                  odgovor = Komunikacija.getInstanca().pozivSo(zahtev);
+                  if (odgovor.getTipOdgovora() == TipOdgovora.USPESNO) {
+                      JOptionPane.showMessageDialog(oef, "Sistem je obrisao koreografa");
+                      ModelTabeleKoreografi model = (ModelTabeleKoreografi) forma.getTblKoreografi().getModel();
+                      model.obrisi(forma.getTblKoreografi().getSelectedRow());
+                  } else {
+                      JOptionPane.showMessageDialog(oef, "Sistem ne moze da obrise koreografa", "Greska", JOptionPane.ERROR_MESSAGE);
+                  }
+              } catch (Exception ex) {
+                  ex.printStackTrace();
+                  JOptionPane.showMessageDialog(oef, "Sistem ne moze da obrise koreografa", "Greska", JOptionPane.ERROR_MESSAGE);
+              }
+          } catch (Exception ex) {
+              JOptionPane.showMessageDialog(oef, "Izaberite red u tabeli");
+          }  
+      }
+    
+    private Koreograf konvertujRedTabeleUObjekatKoreograf() throws Exception {
+        FormaPrikaziSveKoreografe forma = (FormaPrikaziSveKoreografe) oef;
+        ModelTabeleKoreografi model = (ModelTabeleKoreografi) forma.getTblKoreografi().getModel();
+        if (forma.getTblKoreografi().getSelectedRow() != -1) {
+            Koreograf koreograf = model.getListaKoreografa().get(forma.getTblKoreografi().getSelectedRow());
+            return koreograf;
+        } else {
+            throw new Exception();
         }
     }
 }
