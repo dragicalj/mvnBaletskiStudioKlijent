@@ -115,4 +115,23 @@ public abstract class OpstiKontrolerKI {
             JOptionPane.showMessageDialog(oef, "Sistem ne moze da nadje koreografe po zadataom kriterijumu", "Greska", JOptionPane.ERROR_MESSAGE);
         }
     }
+    
+    public void SOUcitajKoreografa() {
+        Zahtev zahtev = new Zahtev(Operacije.UCITAJ_KOREOGRAFA, ado);
+        Odgovor odgovor;
+        try {
+            odgovor = Komunikacija.getInstanca().pozivSo(zahtev);
+            if (odgovor.getTipOdgovora() == TipOdgovora.USPESNO) {
+                ado = (Koreograf) odgovor.getRezultat();
+                pretvoriDomenskiUGraficki();
+                JOptionPane.showMessageDialog(oef, "Sistem je ucitao koreografa");
+            } else {
+                JOptionPane.showMessageDialog(oef, "Sistem ne moze da ucita koreografa", "Greska", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(oef, "Sistem ne moze da ucita koreografa", "Greska", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
 }
