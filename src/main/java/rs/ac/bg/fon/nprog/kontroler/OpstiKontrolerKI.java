@@ -74,5 +74,21 @@ public abstract class OpstiKontrolerKI {
 
     public abstract void ocistiFormu();
 
-   
+    public void SOUcitajListuKoreografa() {
+        Zahtev zahtev = new Zahtev(Operacije.UCITAJ_KOREOGRAFE, lista);
+        Odgovor odgovor;
+        try {
+            odgovor = Komunikacija.getInstanca().pozivSo(zahtev);
+            if (odgovor.getTipOdgovora() == TipOdgovora.USPESNO) {
+                lista = (List<ApstraktniDomenskiObjekat>) odgovor.getRezultat();
+                if (lista.isEmpty()) {
+                    throw new Exception();
+                }
+            } else {
+                JOptionPane.showMessageDialog(oef, "Sistem ne moze da ucita listu koreografa", "Greska", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(oef, "Sistem ne moze da ucita listu koreografa", "Greska", JOptionPane.ERROR_MESSAGE);
+        }
+    }
 }
