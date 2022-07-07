@@ -1,6 +1,7 @@
 package rs.ac.bg.fon.nprog.forme.baletskiigrac;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
@@ -162,14 +163,14 @@ public class FormaPrikaziSveBaletskeIgrace extends OpstaEkranskaForma {
     }                                 
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        /*try {
+        try {
             // TODO add your handling code here:
             BaletskiIgrac baletskiIgrac=kontroler.vratiBaletskogIgraca();
             new FormaPromeniPodatkeBaletskogIgraca(this, baletskiIgrac).setVisible(true);
             
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Greska", JOptionPane.ERROR_MESSAGE);
-        }*/
+        }
     }                                        
 
     private void btnUplatiActionPerformed(java.awt.event.ActionEvent evt) {                                          

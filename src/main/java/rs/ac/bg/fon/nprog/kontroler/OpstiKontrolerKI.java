@@ -274,4 +274,43 @@ public abstract class OpstiKontrolerKI {
             JOptionPane.showMessageDialog(oef, "Sistem ne moze da nadje baletske igrace po zadataom kriterijumu", "Greska", JOptionPane.ERROR_MESSAGE);
         }
     }
+    
+    public void SOUcitajBaletskogIgraca() {
+        Zahtev zahtev = new Zahtev(Operacije.UCITAJ_BALETSKOGIGRACA, ado);
+        Odgovor odgovor;
+        try {
+            odgovor = Komunikacija.getInstanca().pozivSo(zahtev);
+            if (odgovor.getTipOdgovora() == TipOdgovora.USPESNO) {
+                ado = (BaletskiIgrac) odgovor.getRezultat();
+
+                pretvoriDomenskiUGraficki();
+                JOptionPane.showMessageDialog(oef, "Sistem je ucitao baletskog igraca");
+                System.out.println(((BaletskiIgrac) ado).getListaUplata());
+            } else {
+                JOptionPane.showMessageDialog(oef, "Sistem ne moze da ucita baletskog igraca", "Greska", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(oef, "Sistem ne moze da ucita baletskog igraca", "Greska", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    public void SOPromeniBaletskogIgraca() {
+        ado = oef.kreirajObjekat();
+        pretvoriGrafickiUDomenski();
+        Zahtev zahtev = new Zahtev(Operacije.PROMENI_PODATKEBALETSKOGIGRACA, ado);
+        Odgovor odgovor;
+        try {
+            odgovor = Komunikacija.getInstanca().pozivSo(zahtev);
+            if (odgovor.getTipOdgovora() == TipOdgovora.USPESNO) {
+                JOptionPane.showMessageDialog(oef, "Sistem je zapamtio baletskog igraca");
+                ocistiFormu();
+            } else {
+                JOptionPane.showMessageDialog(oef, "Sistem ne moze da zapamti baletskog igraca", "Greska", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(oef, "Sistem ne moze da zapamti baletskog igraca", "Greska", JOptionPane.ERROR_MESSAGE);
+        }
+    }
 }
