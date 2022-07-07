@@ -184,7 +184,7 @@ public class FormaPrikaziSveBaletskeIgrace extends OpstaEkranskaForma {
     }                                         
 
     private void btnPronadjiActionPerformed(java.awt.event.ActionEvent evt) {                                            
-        //kontroler.SOPronadjiBaletskeIgrace();
+        kontroler.SOPronadjiBaletskeIgrace();
     }                                           
 
     /**
