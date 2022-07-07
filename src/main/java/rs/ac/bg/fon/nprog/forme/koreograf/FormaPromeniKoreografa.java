@@ -185,12 +185,12 @@ public class FormaPromeniKoreografa extends OpstaEkranskaForma {
     }// </editor-fold>                        
 
     private void btnSacuvajActionPerformed(java.awt.event.ActionEvent evt) {                                           
-        /*if (txtIme.getText().isEmpty() || txtPrezime.getText().isEmpty() || txtDatumRodjenja.getText().isEmpty() || txtEmail.getText().isEmpty() || txtBrTelefona.getText().isEmpty()) {
+        if (txtIme.getText().isEmpty() || txtPrezime.getText().isEmpty() || txtDatumRodjenja.getText().isEmpty() || txtEmail.getText().isEmpty() || txtBrTelefona.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Sva polja su obavezna!");
             return;
         }
         kontroler.SOPromeniKoreografa();
-        formaSvi.azurirajTabelu((Koreograf) kontroler.getAdo());*/
+        formaSvi.azurirajTabelu((Koreograf) kontroler.getAdo());
     }                                          
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {                                  
