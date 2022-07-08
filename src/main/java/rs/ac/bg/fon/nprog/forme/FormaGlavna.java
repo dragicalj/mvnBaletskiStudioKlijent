@@ -8,6 +8,7 @@ import rs.ac.bg.fon.nprog.forme.koreograf.FormaKreirajKoreografa;
 import rs.ac.bg.fon.nprog.forme.koreograf.FormaPrikaziSveKoreografe;
 import rs.ac.bg.fon.nprog.forme.lokacija.FormaKreirajLokaciju;
 import rs.ac.bg.fon.nprog.forme.nastup.FormaKreirajNastup;
+import rs.ac.bg.fon.nprog.forme.nastup.FormaPrikaziSveNastupe;
 
 public class FormaGlavna extends javax.swing.JFrame {
 
@@ -200,7 +201,7 @@ public class FormaGlavna extends javax.swing.JFrame {
     }                                          
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {                                           
-        //new FormaPrikaziSveNastupe().setVisible(true);
+        new FormaPrikaziSveNastupe().setVisible(true);
     }                                          
 
     private void jmiLogoutActionPerformed(java.awt.event.ActionEvent evt) {                                          
