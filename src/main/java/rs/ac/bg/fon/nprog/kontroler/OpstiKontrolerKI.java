@@ -11,6 +11,7 @@ import rs.ac.bg.fon.nprog.domen.BaletskaGrupa;
 import rs.ac.bg.fon.nprog.domen.BaletskiIgrac;
 import rs.ac.bg.fon.nprog.domen.Koreograf;
 import rs.ac.bg.fon.nprog.domen.Lokacija;
+import rs.ac.bg.fon.nprog.domen.Nastup;
 import rs.ac.bg.fon.nprog.forme.OpstaEkranskaForma;
 import rs.ac.bg.fon.nprog.forme.baletskagrupa.FormaZakaziNastupeBaletskojGrupi;
 import rs.ac.bg.fon.nprog.forme.baletskiigrac.FormaPromeniUplateBaletskogIgraca;
@@ -474,6 +475,27 @@ public abstract class OpstiKontrolerKI {
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(oef, "Sistem ne moze da ucita listu lokacija", "Greska", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    public void SOKreirajNastup() {
+        ado = oef.kreirajObjekat();
+        pretvoriGrafickiUDomenski();
+        Zahtev zahtev = new Zahtev(Operacije.KREIRAJ_NASTUP, ado);
+        Odgovor odgovor;
+        try {
+            odgovor = Komunikacija.getInstanca().pozivSo(zahtev);
+            if (odgovor.getTipOdgovora() == TipOdgovora.USPESNO) {
+                ado = (Nastup) odgovor.getRezultat();
+                pretvoriDomenskiUGraficki();
+                JOptionPane.showMessageDialog(oef, "Sistem je kreirao nastp");
+            } else {
+
+                JOptionPane.showMessageDialog(oef, "Sistem ne moze da kreira nastup", "Greska", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(oef, "Sistem ne moze da kreira nastup", "Greska", JOptionPane.ERROR_MESSAGE);
         }
     }
 }
