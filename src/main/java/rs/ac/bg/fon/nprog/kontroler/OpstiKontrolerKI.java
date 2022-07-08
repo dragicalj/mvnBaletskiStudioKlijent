@@ -458,4 +458,22 @@ public abstract class OpstiKontrolerKI {
             JOptionPane.showMessageDialog(oef, "Sistem ne moze da kreira lokaciju", "Greska", JOptionPane.ERROR_MESSAGE);
         }
     }
+    
+    public void SOUcitajListuLokacija() {
+        Zahtev zahtev = new Zahtev(Operacije.UCITAJ_LOKACIJE, lista);
+        Odgovor odgovor;
+        try {
+            odgovor = Komunikacija.getInstanca().pozivSo(zahtev);
+            if (odgovor.getTipOdgovora() == TipOdgovora.USPESNO) {
+                lista = (List<ApstraktniDomenskiObjekat>) odgovor.getRezultat();
+                if (lista.isEmpty()) {
+                    throw new Exception();
+                }
+            } else {
+                JOptionPane.showMessageDialog(oef, "Sistem ne moze da ucita listu lokacija", "Greska", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(oef, "Sistem ne moze da ucita listu lokacija", "Greska", JOptionPane.ERROR_MESSAGE);
+        }
+    }
 }
