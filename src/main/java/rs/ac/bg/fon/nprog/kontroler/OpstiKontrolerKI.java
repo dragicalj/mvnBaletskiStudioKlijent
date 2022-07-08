@@ -10,6 +10,7 @@ import rs.ac.bg.fon.nprog.domen.ApstraktniDomenskiObjekat;
 import rs.ac.bg.fon.nprog.domen.BaletskaGrupa;
 import rs.ac.bg.fon.nprog.domen.BaletskiIgrac;
 import rs.ac.bg.fon.nprog.domen.Koreograf;
+import rs.ac.bg.fon.nprog.domen.Lokacija;
 import rs.ac.bg.fon.nprog.forme.OpstaEkranskaForma;
 import rs.ac.bg.fon.nprog.forme.baletskagrupa.FormaZakaziNastupeBaletskojGrupi;
 import rs.ac.bg.fon.nprog.forme.baletskiigrac.FormaPromeniUplateBaletskogIgraca;
@@ -434,6 +435,27 @@ public abstract class OpstiKontrolerKI {
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(oef, "Sistem ne moze da zapamti nastupe baletske grupe", "Greska", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    public void SOKreirajLokaciju() {
+        ado = oef.kreirajObjekat();
+        pretvoriGrafickiUDomenski();
+        Zahtev zahtev = new Zahtev(Operacije.KREIRAJ_LOKACIJU, ado);
+        Odgovor odgovor;
+        try {
+            odgovor = Komunikacija.getInstanca().pozivSo(zahtev);
+            if (odgovor.getTipOdgovora() == TipOdgovora.USPESNO) {
+                ado = (Lokacija) odgovor.getRezultat();
+                pretvoriDomenskiUGraficki();
+                JOptionPane.showMessageDialog(oef, "Sistem je kreirao lokaciju");
+            } else {
+
+                JOptionPane.showMessageDialog(oef, "Sistem ne moze da kreira lokaciju", "Greska", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(oef, "Sistem ne moze da kreira lokaciju", "Greska", JOptionPane.ERROR_MESSAGE);
         }
     }
 }
