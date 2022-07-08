@@ -1,5 +1,6 @@
 package rs.ac.bg.fon.nprog.forme;
 
+import rs.ac.bg.fon.nprog.forme.baletskagrupa.FormaKreirajBaletskuGrupu;
 import rs.ac.bg.fon.nprog.forme.baletskiigrac.FormaKreirajBaletskogIgraca;
 import rs.ac.bg.fon.nprog.forme.baletskiigrac.FormaPrikaziSveBaletskeIgrace;
 import rs.ac.bg.fon.nprog.forme.koreograf.FormaKreirajKoreografa;
@@ -188,7 +189,7 @@ public class FormaGlavna extends javax.swing.JFrame {
     }                                          
 
     private void jmiKreirajGrupuActionPerformed(java.awt.event.ActionEvent evt) {                                                
-        //new FormaKreirajBaletskuGrupu().setVisible(true);
+        new FormaKreirajBaletskuGrupu().setVisible(true);
     }                                               
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {                                           

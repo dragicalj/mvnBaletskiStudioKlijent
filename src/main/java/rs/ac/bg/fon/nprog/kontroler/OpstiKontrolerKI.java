@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 
 import rs.ac.bg.fon.nprog.domen.Administrator;
 import rs.ac.bg.fon.nprog.domen.ApstraktniDomenskiObjekat;
+import rs.ac.bg.fon.nprog.domen.BaletskaGrupa;
 import rs.ac.bg.fon.nprog.domen.BaletskiIgrac;
 import rs.ac.bg.fon.nprog.domen.Koreograf;
 import rs.ac.bg.fon.nprog.forme.OpstaEkranskaForma;
@@ -332,6 +333,28 @@ public abstract class OpstiKontrolerKI {
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(oef, "Sistem ne moze da zapamti uplate baletskog igraca", "Greska", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    public void SOKreirajBaletskuGrupu() {
+        ado = oef.kreirajObjekat();
+        pretvoriGrafickiUDomenski();
+
+        Zahtev zahtev = new Zahtev(Operacije.KREIRAJ_BALETSKUGRUPU, ado);
+        Odgovor odgovor;
+        try {
+            odgovor = Komunikacija.getInstanca().pozivSo(zahtev);
+            if (odgovor.getTipOdgovora() == TipOdgovora.USPESNO) {
+                ado = (BaletskaGrupa) odgovor.getRezultat();
+                pretvoriDomenskiUGraficki();
+                JOptionPane.showMessageDialog(oef, "Sistem je kreirao baletsku grupu");
+            } else {
+
+                JOptionPane.showMessageDialog(oef, "Sistem ne moze da kreira baletsku grupu", "Greska", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(oef, "Sistem ne moze da kreira baletsku grupu", "Greska", JOptionPane.ERROR_MESSAGE);
         }
     }
 }
