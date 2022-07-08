@@ -357,4 +357,43 @@ public abstract class OpstiKontrolerKI {
             JOptionPane.showMessageDialog(oef, "Sistem ne moze da kreira baletsku grupu", "Greska", JOptionPane.ERROR_MESSAGE);
         }
     }
+    
+    public void SOUcitajBaletskuGrupu() {
+        Zahtev zahtev = new Zahtev(Operacije.UCITAJ_BALETSKUGRUPU, ado);
+        Odgovor odgovor;
+        try {
+            odgovor = Komunikacija.getInstanca().pozivSo(zahtev);
+            if (odgovor.getTipOdgovora() == TipOdgovora.USPESNO) {
+                ado = (BaletskaGrupa) odgovor.getRezultat();
+                System.out.println(((BaletskaGrupa) ado).getListaNastupa());
+                pretvoriDomenskiUGraficki();
+                JOptionPane.showMessageDialog(oef, "Sistem je ucitao baletsku grupu");
+                System.out.println(((BaletskaGrupa) ado).getListaNastupa());
+            } else {
+                JOptionPane.showMessageDialog(oef, "Sistem ne moze da ucita baletsku grupu", "Greska", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(oef, "Sistem ne moze da ucita baletsku grupu", "Greska", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    public void SOPromeniBaletskuGrupu() {
+        ado = oef.kreirajObjekat();
+        pretvoriGrafickiUDomenski();
+        Zahtev zahtev = new Zahtev(Operacije.PROMENI_PODATKEBALETSKEGRUPE, ado);
+        Odgovor odgovor;
+        try {
+            odgovor = Komunikacija.getInstanca().pozivSo(zahtev);
+            if (odgovor.getTipOdgovora() == TipOdgovora.USPESNO) {
+                JOptionPane.showMessageDialog(oef, "Sistem je zapamtio baletsku grupu");
+                ocistiFormu();
+            } else {
+                JOptionPane.showMessageDialog(oef, "Sistem ne moze da zapamti baletsku grupu", "Greska", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(oef, "Sistem ne moze da zapamti baletsku grupu", "Greska", JOptionPane.ERROR_MESSAGE);
+        }
+    }
 }

@@ -1,5 +1,6 @@
 package rs.ac.bg.fon.nprog.forme.baletskagrupa;
 
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
 import rs.ac.bg.fon.nprog.domen.ApstraktniDomenskiObjekat;
@@ -136,14 +137,14 @@ public class FormaPrikaziSveBaletskeGrupe extends OpstaEkranskaForma {
     }                                         
 
     private void btnIzmeniActionPerformed(java.awt.event.ActionEvent evt) {                                          
-        /*try {
+        try {
             // TODO add your handling code here:
             BaletskaGrupa baletskaGrupa=kontroler.vratiBaletskuGrupu();
             new FormaPromeniPodatkeBaletskeGrupe(this, baletskaGrupa).setVisible(true);
             
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Greska", JOptionPane.ERROR_MESSAGE);
-        }*/
+        }
     }                                         
 
 /**
