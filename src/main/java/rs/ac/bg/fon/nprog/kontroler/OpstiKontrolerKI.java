@@ -11,6 +11,7 @@ import rs.ac.bg.fon.nprog.domen.BaletskaGrupa;
 import rs.ac.bg.fon.nprog.domen.BaletskiIgrac;
 import rs.ac.bg.fon.nprog.domen.Koreograf;
 import rs.ac.bg.fon.nprog.forme.OpstaEkranskaForma;
+import rs.ac.bg.fon.nprog.forme.baletskagrupa.FormaZakaziNastupeBaletskojGrupi;
 import rs.ac.bg.fon.nprog.forme.baletskiigrac.FormaPromeniUplateBaletskogIgraca;
 import rs.ac.bg.fon.nprog.forme.koreograf.FormaPrikaziSveKoreografe;
 import rs.ac.bg.fon.nprog.komunikacija.Komunikacija;
@@ -394,6 +395,45 @@ public abstract class OpstiKontrolerKI {
         } catch (Exception ex) {
             ex.printStackTrace();
             JOptionPane.showMessageDialog(oef, "Sistem ne moze da zapamti baletsku grupu", "Greska", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    public void SOUcitajListuNastupa() {
+        Zahtev zahtev = new Zahtev(Operacije.UCITAJ_NASTUPE, lista);
+        Odgovor odgovor;
+        try {
+            odgovor = Komunikacija.getInstanca().pozivSo(zahtev);
+            if (odgovor.getTipOdgovora() == TipOdgovora.USPESNO) {
+                lista = (List<ApstraktniDomenskiObjekat>) odgovor.getRezultat();
+                if (lista.isEmpty()) {
+                    throw new Exception();
+                }
+            } else {
+                JOptionPane.showMessageDialog(oef, "Sistem ne moze da ucita listu nastupa", "Greska", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(oef, "Sistem ne moze da ucita listu nastupa", "Greska", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    public void SOSacuvajNastupeBaletskeGrupe() {
+        ado = oef.kreirajObjekat();
+        //System.out.println(((BaletskiIgrac)ado).getBaletskiIgracId());
+        pretvoriGrafickiUDomenski();
+        ((BaletskaGrupa) ado).setBaletskaGrupaId(Long.parseLong(((FormaZakaziNastupeBaletskojGrupi) oef).getTxtId().getText()));
+        Zahtev zahtev = new Zahtev(Operacije.ZAPAMTI_NASTUPEBALETSKEGRUPE, ado);
+        Odgovor odgovor;
+        try {
+            odgovor = Komunikacija.getInstanca().pozivSo(zahtev);
+            if (odgovor.getTipOdgovora() == TipOdgovora.USPESNO) {
+                JOptionPane.showMessageDialog(oef, "Sistem je zapamtio nastupe baletske grupe");
+                ocistiFormu();
+            } else {
+                JOptionPane.showMessageDialog(oef, "Sistem ne moze da zapamti nastupe baletske grupe", "Greska", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(oef, "Sistem ne moze da zapamti nastupe baletske grupe", "Greska", JOptionPane.ERROR_MESSAGE);
         }
     }
 }

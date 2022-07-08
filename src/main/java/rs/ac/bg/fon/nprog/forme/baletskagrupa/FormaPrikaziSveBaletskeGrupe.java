@@ -125,7 +125,7 @@ public class FormaPrikaziSveBaletskeGrupe extends OpstaEkranskaForma {
     }                                 
 
     private void btnZakaziActionPerformed(java.awt.event.ActionEvent evt) {                                          
-        /*try {
+        try {
             // TODO add your handling code here:
             BaletskaGrupa baletskaGrupa=kontroler.vratiBaletskuGrupu();
             System.out.println(baletskaGrupa.getListaNastupa());
@@ -133,7 +133,7 @@ public class FormaPrikaziSveBaletskeGrupe extends OpstaEkranskaForma {
             //.out.println(baletskiIgrac.getBaletskiIgracId());
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Greska", JOptionPane.ERROR_MESSAGE);
-        }*/
+        }
     }                                         
 
     private void btnIzmeniActionPerformed(java.awt.event.ActionEvent evt) {                                          
