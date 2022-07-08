@@ -174,14 +174,14 @@ public class FormaPrikaziSveBaletskeIgrace extends OpstaEkranskaForma {
     }                                        
 
     private void btnUplatiActionPerformed(java.awt.event.ActionEvent evt) {                                          
-        /*try {
+        try {
             // TODO add your handling code here:
             BaletskiIgrac baletskiIgrac=kontroler.vratiBaletskogIgraca();
             new FormaPromeniUplateBaletskogIgraca(this, baletskiIgrac).setVisible(true);
             //.out.println(baletskiIgrac.getBaletskiIgracId());
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Greska", JOptionPane.ERROR_MESSAGE);
-        }*/
+        }
     }                                         
 
     private void btnPronadjiActionPerformed(java.awt.event.ActionEvent evt) {                                            
