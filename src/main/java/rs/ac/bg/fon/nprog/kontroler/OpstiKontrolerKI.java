@@ -10,6 +10,7 @@ import rs.ac.bg.fon.nprog.domen.ApstraktniDomenskiObjekat;
 import rs.ac.bg.fon.nprog.domen.BaletskiIgrac;
 import rs.ac.bg.fon.nprog.domen.Koreograf;
 import rs.ac.bg.fon.nprog.forme.OpstaEkranskaForma;
+import rs.ac.bg.fon.nprog.forme.baletskiigrac.FormaPromeniUplateBaletskogIgraca;
 import rs.ac.bg.fon.nprog.forme.koreograf.FormaPrikaziSveKoreografe;
 import rs.ac.bg.fon.nprog.komunikacija.Komunikacija;
 import rs.ac.bg.fon.nprog.modeli.ModelTabeleKoreografi;
@@ -311,6 +312,26 @@ public abstract class OpstiKontrolerKI {
         } catch (Exception ex) {
             ex.printStackTrace();
             JOptionPane.showMessageDialog(oef, "Sistem ne moze da zapamti baletskog igraca", "Greska", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    public void SOSacuvajUplateBaletskogIgraca() {
+        ado = oef.kreirajObjekat();
+        //System.out.println(((BaletskiIgrac)ado).getBaletskiIgracId());
+        pretvoriGrafickiUDomenski();
+        ((BaletskiIgrac) ado).setBaletskiIgracId(Long.parseLong(((FormaPromeniUplateBaletskogIgraca) oef).getTxtId().getText()));
+        Zahtev zahtev = new Zahtev(Operacije.ZAPAMTI_UPLATEBALETSKOGIGRACA, ado);
+        Odgovor odgovor;
+        try {
+            odgovor = Komunikacija.getInstanca().pozivSo(zahtev);
+            if (odgovor.getTipOdgovora() == TipOdgovora.USPESNO) {
+                JOptionPane.showMessageDialog(oef, "Sistem je zapamtio uplate baletskog igraca");
+                ocistiFormu();
+            } else {
+                JOptionPane.showMessageDialog(oef, "Sistem ne moze da zapamti uplate baletskog igraca", "Greska", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(oef, "Sistem ne moze da zapamti uplate baletskog igraca", "Greska", JOptionPane.ERROR_MESSAGE);
         }
     }
 }
