@@ -42,6 +42,7 @@ public class FormaPrikaziSveKoreografe extends OpstaEkranskaForma {
         jLabel2 = new javax.swing.JLabel();
         btnIzmeni = new javax.swing.JButton();
         btnObrisi = new javax.swing.JButton();
+        
         btnPronadji = new javax.swing.JButton();
         txtIme = new javax.swing.JTextField();
         cbKlasican = new javax.swing.JCheckBox();
@@ -190,7 +191,7 @@ public class FormaPrikaziSveKoreografe extends OpstaEkranskaForma {
     }// </editor-fold>                        
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {                                  
-        kontroler.SOUcitajListuKoreografa();
+        kontroler.SOUcitajListuKoreografaJSON();
         kontroler.napuniTabelu();
     }                                 
 

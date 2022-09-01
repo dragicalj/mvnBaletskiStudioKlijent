@@ -58,7 +58,7 @@ public class FormaGlavna extends javax.swing.JFrame {
         });
         jmiKreiraj.add(jmiKreirajKoreografa);
 
-        jmiPrikaziKoreografe.setText("Prikazi sve");
+        jmiPrikaziKoreografe.setText("Sacuvaj sve u fajl i prikazi");
         jmiPrikaziKoreografe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmiPrikaziKoreografeActionPerformed(evt);
@@ -78,7 +78,7 @@ public class FormaGlavna extends javax.swing.JFrame {
         });
         jmIgrac.add(jMenuItem2);
 
-        jMenuItem4.setText("Prikazi sve");
+        jMenuItem4.setText("Sacuvaj sve u fajl i prikazi");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem4ActionPerformed(evt);
@@ -98,7 +98,7 @@ public class FormaGlavna extends javax.swing.JFrame {
         });
         jmGrupa.add(jmiKreirajGrupu);
 
-        jMenuItem6.setText("Prikazi sve");
+        jMenuItem6.setText("Sacuvaj sve u fajl i prikazi");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem6ActionPerformed(evt);

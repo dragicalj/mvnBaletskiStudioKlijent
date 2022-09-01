@@ -157,7 +157,7 @@ public class FormaPrikaziSveBaletskeIgrace extends OpstaEkranskaForma {
     }// </editor-fold>                        
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {                                  
-        kontroler.SOUcitajListuBaletskihIgraca();
+        kontroler.SOUcitajListuBaletskihIgracaJSON();
         kontroler.napuniTabelu();
 
     }                                 

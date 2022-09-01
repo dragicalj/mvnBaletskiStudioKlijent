@@ -3,6 +3,8 @@ package rs.ac.bg.fon.nprog.forme.baletskagrupa;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
+import com.google.gson.Gson;
+
 import rs.ac.bg.fon.nprog.domen.ApstraktniDomenskiObjekat;
 import rs.ac.bg.fon.nprog.domen.BaletskaGrupa;
 import rs.ac.bg.fon.nprog.forme.OpstaEkranskaForma;
@@ -120,7 +122,7 @@ public class FormaPrikaziSveBaletskeGrupe extends OpstaEkranskaForma {
     }// </editor-fold>                        
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {                                  
-        kontroler.SOUcitajListuBaletskihGrupa();
+        kontroler.SOUcitajListuBaletskihGrupaJSON();
         kontroler.napuniTabelu();
     }                                 
 

@@ -1,9 +1,15 @@
 package rs.ac.bg.fon.nprog.kontroler;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JOptionPane;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import rs.ac.bg.fon.nprog.domen.Administrator;
 import rs.ac.bg.fon.nprog.domen.ApstraktniDomenskiObjekat;
@@ -92,6 +98,8 @@ public abstract class OpstiKontrolerKI {
                 if (lista.isEmpty()) {
                     throw new Exception();
                 }
+                
+
             } else {
                 JOptionPane.showMessageDialog(oef, "Sistem ne moze da ucita listu koreografa", "Greska", JOptionPane.ERROR_MESSAGE);
             }
@@ -99,7 +107,37 @@ public abstract class OpstiKontrolerKI {
             JOptionPane.showMessageDialog(oef, "Sistem ne moze da ucita listu koreografa", "Greska", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
+    public void SOUcitajListuKoreografaJSON() {
+        Zahtev zahtev = new Zahtev(Operacije.UCITAJ_KOREOGRAFE, lista);
+        Odgovor odgovor;
+        try {
+            odgovor = Komunikacija.getInstanca().pozivSo(zahtev);
+            if (odgovor.getTipOdgovora() == TipOdgovora.USPESNO) {
+                lista = (List<ApstraktniDomenskiObjekat>) odgovor.getRezultat();
+                if (lista.isEmpty()) {
+                    throw new Exception();
+                }
+                ArrayList<Koreograf> koreografi=new ArrayList<Koreograf>();
+                for (ApstraktniDomenskiObjekat ado : lista) {
+                    Koreograf koreograf = (Koreograf) ado;
+                    koreografi.add(koreograf);
+                }
+                try(PrintWriter out = new PrintWriter(new FileWriter("koreografi.json"))){
+        			Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        			
+        			out.print(gson.toJson(koreografi));
+        		} catch (IOException e) {
+        			e.printStackTrace();
+        		}
+                JOptionPane.showMessageDialog(oef, "Sistem je preuzeo koreografe u fajlu koreografi.json!");
+
+            } else {
+                JOptionPane.showMessageDialog(oef, "Sistem ne moze da ucita listu koreografa", "Greska", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(oef, "Sistem ne moze da ucita listu koreografa", "Greska", JOptionPane.ERROR_MESSAGE);
+        }
+    }
     public void SOPronadjiKoreografe() {
         ocistiFormu();
         ado = oef.kreirajObjekat();
@@ -206,6 +244,7 @@ public abstract class OpstiKontrolerKI {
                 if (lista.isEmpty()) {
                     throw new Exception();
                 }
+                
             } else {
                 JOptionPane.showMessageDialog(oef, "Sistem ne moze da ucita listu baletskih grupa", "Greska", JOptionPane.ERROR_MESSAGE);
             }
@@ -214,7 +253,37 @@ public abstract class OpstiKontrolerKI {
             JOptionPane.showMessageDialog(oef, "Sistem ne moze da ucita listu baletskih grupa", "Greska", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
+    public void SOUcitajListuBaletskihGrupaJSON() {
+        Zahtev zahtev = new Zahtev(Operacije.UCITAJ_BALETSKEGRUPE, lista);
+        Odgovor odgovor;
+        try {
+            odgovor = Komunikacija.getInstanca().pozivSo(zahtev);
+            if (odgovor.getTipOdgovora() == TipOdgovora.USPESNO) {
+                lista = (List<ApstraktniDomenskiObjekat>) odgovor.getRezultat();
+                if (lista.isEmpty()) {
+                    throw new Exception();
+                }
+                ArrayList<BaletskaGrupa> baletskeGrupe=new ArrayList<BaletskaGrupa>();
+                for (ApstraktniDomenskiObjekat ado : lista) {
+                    BaletskaGrupa baletskaGrupa = (BaletskaGrupa) ado;
+                    baletskeGrupe.add(baletskaGrupa);
+                }
+                try(PrintWriter out = new PrintWriter(new FileWriter("baletskeGrupe.json"))){
+        			Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        			
+        			out.print(gson.toJson(baletskeGrupe));
+        		} catch (IOException e) {
+        			e.printStackTrace();
+        		}
+                JOptionPane.showMessageDialog(oef, "Sistem je preuzeo baletske grupe u fajlu baletskeGrupe.json!");
+            } else {
+                JOptionPane.showMessageDialog(oef, "Sistem ne moze da ucita listu baletskih grupa", "Greska", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(oef, "Sistem ne moze da ucita listu baletskih grupa", "Greska", JOptionPane.ERROR_MESSAGE);
+        }
+    }
     public void SOKreirajBaletskogIgraca() {
         ado = oef.kreirajObjekat();
         pretvoriGrafickiUDomenski();
@@ -233,6 +302,38 @@ public abstract class OpstiKontrolerKI {
         } catch (Exception ex) {
             ex.printStackTrace();
             JOptionPane.showMessageDialog(oef, "Sistem ne moze da kreira baletskog igraca", "Greska", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    public void SOUcitajListuBaletskihIgracaJSON() {
+        Zahtev zahtev = new Zahtev(Operacije.UCITAJ_BALETSKEIGRACE, lista);
+        Odgovor odgovor;
+        try {
+            odgovor = Komunikacija.getInstanca().pozivSo(zahtev);
+            if (odgovor.getTipOdgovora() == TipOdgovora.USPESNO) {
+                lista = (List<ApstraktniDomenskiObjekat>) odgovor.getRezultat();
+                if (lista.isEmpty()) {
+                    throw new Exception();
+                }
+                ArrayList<BaletskiIgrac> baletskiIgraci=new ArrayList<BaletskiIgrac>();
+                for (ApstraktniDomenskiObjekat ado : lista) {
+                    BaletskiIgrac baletskiIgrac = (BaletskiIgrac) ado;
+                    baletskiIgraci.add(baletskiIgrac);
+                }
+                try(PrintWriter out = new PrintWriter(new FileWriter("baletskiIgraci.json"))){
+        			Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        			
+        			out.print(gson.toJson(baletskiIgraci));
+        		} catch (IOException e) {
+        			e.printStackTrace();
+        		}
+                JOptionPane.showMessageDialog(oef, "Sistem je preuzeo baletske igrace u fajlu baletskiIgraci.json!");
+            } else {
+                JOptionPane.showMessageDialog(oef, "Sistem ne moze da ucita listu baletskih igraca", "Greska", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(oef, "Sistem ne moze da ucita listu baletskih igraca", "Greska", JOptionPane.ERROR_MESSAGE);
         }
     }
     
