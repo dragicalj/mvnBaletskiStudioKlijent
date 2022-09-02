@@ -140,7 +140,7 @@ public class FormaGlavna extends javax.swing.JFrame {
 
         jmbMain.add(jmLokacija);
 
-        jmLogout.setText("Izloguj se");
+       /* jmLogout.setText("Izloguj se");
 
         jmiLogout.setText("Izloguj se");
         jmiLogout.addActionListener(new java.awt.event.ActionListener() {
@@ -150,7 +150,7 @@ public class FormaGlavna extends javax.swing.JFrame {
         });
         jmLogout.add(jmiLogout);
 
-        jmbMain.add(jmLogout);
+        jmbMain.add(jmLogout);*/
 
         setJMenuBar(jmbMain);
 
